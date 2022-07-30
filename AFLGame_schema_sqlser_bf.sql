@@ -15,9 +15,11 @@ CREATE TABLE [game] (
     [start_time] time  NOT NULL ,
     [stadium_id] int  NOT NULL ,
     [attendance] int  NOT NULL ,
-    [home_team_id] int  NOT NULL ,
+    [home_team_id] int  NULL ,
+    [home_team_name] varchar(50)  NOT NULL ,
     [home_team_score] int  NOT NULL ,
-    [away_team_id] int  NOT NULL ,
+    [away_team_id] int  NULL ,
+    [away_team_name] varchar(50)  NOT NULL ,
     [away_team_score] int  NOT NULL ,
     [rain_fall] dec  NOT NULL 
 )
@@ -25,15 +27,16 @@ CREATE TABLE [game] (
 CREATE TABLE [game_player_status] (
     [game_id] varchar(12)  NOT NULL ,
     [team_id] int  NOT NULL ,
+    [team_name] varchar(50)  NULL ,
     [player_id] int  NOT NULL ,
     [rebounds] int  NOT NULL ,
     [inside_50s] int  NOT NULL ,
-    [clearance] int  NOT NULL ,
-    [contested_position] int  NOT NULL 
+    [clearances] int  NOT NULL ,
+    [contested_positions] int  NOT NULL 
 )
 
 CREATE TABLE [player] (
-    [player_id] serial  NOT NULL ,
+    [player_id] int  NOT NULL ,
     [first_name] varchar(20)  NOT NULL ,
     [middle_name] varchar(20)  NULL ,
     [last_name] varchar(20)  NOT NULL 
@@ -42,7 +45,8 @@ CREATE TABLE [player] (
 CREATE TABLE [stadium] (
     [stadium_id] serial  NOT NULL ,
     [name] varchar(50)  NOT NULL ,
-    [city_id] int  NOT NULL ,
+    [city_id] int  NULL ,
+    [city_name] varchar(50)  NOT NULL ,
     [capacity] int  NOT NULL ,
     [in_use] varchar(10)  NULL ,
     [active_ind] boolean  NULL 
@@ -57,7 +61,8 @@ CREATE TABLE [city] (
 CREATE TABLE [team] (
     [team_id] seiral  NOT NULL ,
     [name] varchar(50)  NOT NULL ,
-    [stadium_id] int  NOT NULL 
+    [stadium_id] int  NOT NULL ,
+    [stadium_name] varchar(50)  NOT NULL 
 )
 
 ALTER TABLE [game] WITH CHECK ADD CONSTRAINT [FK_game_stadium_id] FOREIGN KEY([stadium_id])
