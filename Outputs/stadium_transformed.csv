@@ -1,0 +1,12 @@
+stadium_id,stadium_name,capacity,start_year,end_year,city_id,active_ind
+23,Adelaide Oval,53500.0,2011,2022,1,True
+18,Gabba,41974.0,1981,2022,11,True
+16,Glenferrie Oval,10000.0,1925,1973,4,False
+29,Manuka Oval,16000.0,1998,2022,29,True
+1,M.C.G.,100024.0,1897,2022,4,True
+42,Riverway Stadium,10000.0,2019,2019,50,False
+17,S.C.G.,48000.0,1903,2022,6,True
+33,Toorak Park,7000.0,1942,1943,4,False
+4,Victoria Park,10000.0,1897,1999,4,False
+10,Windy Hill,10000.0,1922,1991,4,False
+37,Yarraville Oval,6000.0,1942,1942,4,False
