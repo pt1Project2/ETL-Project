@@ -25,7 +25,8 @@ CREATE TABLE "game_player_status" (
     "rebounds" int   NOT NULL,
     "inside_50s" int   NOT NULL,
     "clearances" int   NOT NULL,
-    "contested_possessions" int   NOT NULL
+    "contested_possessions" int   NOT NULL,
+    "performance" int   NOT NULL
 );
 
 CREATE TABLE "player" (
