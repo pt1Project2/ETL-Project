@@ -55,7 +55,7 @@ CREATE TABLE "city" (
 );
 
 CREATE TABLE "team" (
-    "team_id" seiral   NOT NULL,
+    "team_id" serial   NOT NULL,
     "name" varchar(50)   NOT NULL,
     "stadium_id" int   NOT NULL,
     "stadium_name" varchar(50)   NOT NULL
