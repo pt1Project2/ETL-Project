@@ -1,7 +1,9 @@
 ﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- Link to schema: https://app.quickdatabasediagrams.com/#/d/cc01V5
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
+-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+-- Link to schema: https://app.quickdatabasediagrams.com/
+-- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
 CREATE TABLE "game" (
     "game_id" varchar(12)   NOT NULL,
@@ -86,4 +88,7 @@ REFERENCES "city" ("city_id");
 
 ALTER TABLE "team" ADD CONSTRAINT "fk_team_stadium_id" FOREIGN KEY("stadium_id")
 REFERENCES "stadium" ("stadium_id");
+
+ALTER TABLE "tvs" ADD CONSTRAINT "fk_tvs_team_id" FOREIGN KEY("team_id")
+REFERENCES "team" ("team_id");
 

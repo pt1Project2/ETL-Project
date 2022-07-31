@@ -1,7 +1,9 @@
 ﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- Link to schema: https://app.quickdatabasediagrams.com/#/d/cc01V5
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
+-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+-- Link to schema: https://app.quickdatabasediagrams.com/
+-- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
 SET XACT_ABORT ON
 
@@ -28,14 +30,13 @@ CREATE TABLE [game_player_status] (
     [player_id] int  NOT NULL ,
     [rebounds] int  NOT NULL ,
     [inside_50s] int  NOT NULL ,
-    [clearance] int  NOT NULL ,
-    [contested_position] int  NOT NULL 
+    [clearances] int  NOT NULL ,
+    [contested_possessions] int  NOT NULL 
 )
 
 CREATE TABLE [player] (
-    [player_id] serial  NOT NULL ,
+    [player_id] int  NOT NULL ,
     [first_name] varchar(20)  NOT NULL ,
-    [middle_name] varchar(20)  NULL ,
     [last_name] varchar(20)  NOT NULL 
 )
 
@@ -43,9 +44,10 @@ CREATE TABLE [stadium] (
     [stadium_id] serial  NOT NULL ,
     [name] varchar(50)  NOT NULL ,
     [city_id] int  NOT NULL ,
+    [start_year] int  NOT NULL ,
+    [end_year] int  NOT NULL ,
     [capacity] int  NOT NULL ,
-    [in_use] varchar(10)  NULL ,
-    [active_ind] boolean  NULL 
+    [active_ind] boolean  NOT NULL 
 )
 
 CREATE TABLE [city] (
@@ -55,9 +57,16 @@ CREATE TABLE [city] (
 )
 
 CREATE TABLE [team] (
-    [team_id] seiral  NOT NULL ,
+    [team_id] serial  NOT NULL ,
     [name] varchar(50)  NOT NULL ,
     [stadium_id] int  NOT NULL 
+)
+
+CREATE TABLE [tvs] (
+    [tvs_id] serial  NOT NULL ,
+    [year] int  NOT NULL ,
+    [team_id] int  NOT NULL ,
+    [tvs] int  NOT NULL 
 )
 
 ALTER TABLE [game] WITH CHECK ADD CONSTRAINT [FK_game_stadium_id] FOREIGN KEY([stadium_id])
@@ -99,5 +108,10 @@ ALTER TABLE [team] WITH CHECK ADD CONSTRAINT [FK_team_stadium_id] FOREIGN KEY([s
 REFERENCES [stadium] ([stadium_id])
 
 ALTER TABLE [team] CHECK CONSTRAINT [FK_team_stadium_id]
+
+ALTER TABLE [tvs] WITH CHECK ADD CONSTRAINT [FK_tvs_team_id] FOREIGN KEY([team_id])
+REFERENCES [team] ([team_id])
+
+ALTER TABLE [tvs] CHECK CONSTRAINT [FK_tvs_team_id]
 
 COMMIT TRANSACTION QUICKDBD
