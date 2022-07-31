@@ -11,9 +11,9 @@ CREATE TABLE "game" (
     "start_time" time   NOT NULL,
     "stadium_id" int   NOT NULL,
     "attendance" int   NOT NULL,
-    "home_team_id" int   NULL,
+    "home_team_id" int   NOT NULL,
     "home_team_score" int   NOT NULL,
-    "away_team_id" int   NULL,
+    "away_team_id" int   NOT NULL,
     "away_team_score" int   NOT NULL,
     "rain_fall" dec   NOT NULL
 );
@@ -25,8 +25,7 @@ CREATE TABLE "game_player_status" (
     "rebounds" int   NOT NULL,
     "inside_50s" int   NOT NULL,
     "clearances" int   NOT NULL,
-    "contested_possessions" int   NOT NULL,
-    "performance" int   NOT NULL
+    "contested_possessions" int   NOT NULL
 );
 
 CREATE TABLE "player" (
@@ -38,7 +37,7 @@ CREATE TABLE "player" (
 CREATE TABLE "stadium" (
     "stadium_id" serial   NOT NULL,
     "name" varchar(50)   NOT NULL,
-    "city_id" int   NULL,
+    "city_id" int   NOT NULL,
     "start_year" int   NOT NULL,
     "end_year" int   NOT NULL,
     "capacity" int   NOT NULL,
@@ -52,9 +51,16 @@ CREATE TABLE "city" (
 );
 
 CREATE TABLE "team" (
-    "team_id" seiral   NOT NULL,
+    "team_id" serial   NOT NULL,
     "name" varchar(50)   NOT NULL,
     "stadium_id" int   NOT NULL
+);
+
+CREATE TABLE "tvs" (
+    "tvs_id" serial   NOT NULL,
+    "year" int   NOT NULL,
+    "team_id" int   NOT NULL,
+    "tvs" int   NOT NULL
 );
 
 ALTER TABLE "game" ADD CONSTRAINT "fk_game_stadium_id" FOREIGN KEY("stadium_id")
