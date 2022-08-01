@@ -7,27 +7,28 @@
 
 CREATE TABLE "game" (
     "game_id" varchar(12)   NOT NULL,
-    "year" int   NOT NULL,
-    "round" varchar(3)   NOT NULL,
-    "date" date   NOT NULL,
-    "start_time" time   NOT NULL,
-    "stadium_id" int   NOT NULL,
-    "attendance" int   NOT NULL,
-    "home_team_id" int   NOT NULL,
-    "home_team_score" int   NOT NULL,
-    "away_team_id" int   NOT NULL,
-    "away_team_score" int   NOT NULL,
-    "rain_fall" dec   NOT NULL
+    "year" int   NULL,
+    "round" varchar(3)   NULL,
+    "date" date   NULL,
+    "start_time" time   NULL,
+    "stadium_id" int   NULL,
+    "attendance" int   NULL,
+    "home_team_id" int   NULL,
+    "home_team_score" int   NULL,
+    "away_team_id" int   NULL,
+    "away_team_score" int   NULL,
+    "rain_fall" dec   NULL
 );
 
 CREATE TABLE "game_player_status" (
     "game_id" varchar(12)   NOT NULL,
+    "year" int   NOT NULL,
     "team_id" int   NOT NULL,
     "player_id" int   NOT NULL,
-    "rebounds" int   NOT NULL,
-    "inside_50s" int   NOT NULL,
-    "clearances" int   NOT NULL,
-    "contested_possessions" int   NOT NULL
+    "rebounds" int   NULL,
+    "inside_50s" int   NULL,
+    "clearances" int   NULL,
+    "contested_possessions" int   NULL
 );
 
 CREATE TABLE "player" (
@@ -39,29 +40,29 @@ CREATE TABLE "player" (
 CREATE TABLE "stadium" (
     "stadium_id" serial   NOT NULL,
     "name" varchar(50)   NOT NULL,
-    "city_id" int   NOT NULL,
-    "start_year" int   NOT NULL,
-    "end_year" int   NOT NULL,
-    "capacity" int   NOT NULL,
-    "active_ind" boolean   NOT NULL
+    "city_id" int   NULL,
+    "start_year" int   NULL,
+    "end_year" int   NULL,
+    "capacity" int   NULL,
+    "active_ind" boolean   NULL
 );
 
 CREATE TABLE "city" (
     "city_id" serial   NOT NULL,
-    "name" varchar(50)   NOT NULL,
-    "state" varchar(3)   NOT NULL
+    "name" varchar(50)   NULL,
+    "state" varchar(50)   NULL
 );
 
 CREATE TABLE "team" (
     "team_id" serial   NOT NULL,
-    "name" varchar(50)   NOT NULL,
-    "stadium_id" int   NOT NULL
+    "name" varchar(50)   NULL,
+    "stadiums" varchar(50)   NULL
 );
 
 CREATE TABLE "tvs" (
     "tvs_id" serial   NOT NULL,
     "year" int   NOT NULL,
-    "team_id" int   NOT NULL,
+    "team_id" int   NULL,
     "tvs" int   NOT NULL
 );
 
@@ -85,9 +86,6 @@ REFERENCES "player" ("player_id");
 
 ALTER TABLE "stadium" ADD CONSTRAINT "fk_stadium_city_id" FOREIGN KEY("city_id")
 REFERENCES "city" ("city_id");
-
-ALTER TABLE "team" ADD CONSTRAINT "fk_team_stadium_id" FOREIGN KEY("stadium_id")
-REFERENCES "stadium" ("stadium_id");
 
 ALTER TABLE "tvs" ADD CONSTRAINT "fk_tvs_team_id" FOREIGN KEY("team_id")
 REFERENCES "team" ("team_id");
